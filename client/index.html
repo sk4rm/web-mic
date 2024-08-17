@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>web-mic client</title>
+    <script src="../peerjs.min.js"></script>
+    <script src="./index.js"></script>
+</head>
+<body>
+<form action="#" id="form">
+    <label for="client-name">give this client a name</label>
+    <input id="client-name" placeholder="client-name" value="my-iphone" required>
+
+    <label for="server-name">and <button type="submit">connect</button> to</label>
+    <input id="server-name" placeholder="server-name" value="my-gaming-pc" required>
+
+    <label for="server-ip">@</label>
+    <input id="server-ip" placeholder="server ip" value="localhost" required>
+
+    <label for="server-port">:</label>
+    <input id="server-port" placeholder="server port" value="443" required>
+</form>
+</body>
+</html>

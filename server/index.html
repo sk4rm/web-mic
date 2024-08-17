@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>web-mic server</title>
+    <script src="../peerjs.min.js"></script>
+    <script src="./index.js"></script>
+</head>
+<body>
+<form action="#" id="form">
+    <label for="server-name">give this server a name</label>
+    <input id="server-name" placeholder="server-name" value="my-gaming-pc" required>
+
+    <label for="server-port">and <button type="submit">start server</button> at port</label>
+    <input id="server-port" placeholder="port" value="443" required>
+</form>
+<audio id="remoteAudio" muted="muted"></audio>
+</body>
+</html>
