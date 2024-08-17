@@ -3,7 +3,11 @@
 // 3. Accept calls from those peers
 // 4. Done
 
+"use strict";
+
 function createServerPeer() {
+    console.log("Creating server peer...");
+
     const serverName = document.querySelector("#server-name").value;
     const serverPort = document.querySelector("#server-port").value;
 
@@ -15,41 +19,53 @@ function createServerPeer() {
     };
 
     // I use server name as peer ID
-    return new Peer(serverName, options);
+    return new peerjs.Peer(serverName, options);
 }
 
-function connect() {
+function acceptCall(call) {
+    console.log("Received a call from a client. Answering...");
+
+    call.answer(undefined);
+
+    call.on("stream", (stream) => {
+        console.log("Audio stream received from client.");
+
+        const audio = document.querySelector("#remoteAudio");
+        audio.srcObject = stream;
+        audio.autoplay = true;
+        audio.muted = false;
+    });
+}
+
+function setupServerPeer() {
+    // Disable start server button
+    document.querySelector("#start-btn").disabled = true;
+
     const peer = createServerPeer();
 
     peer.on("error", (err) => {
-        console.error("server connection error:", err);
+        window.alert(err.message);
+
+        console.log("Cleaning up peer...");
+        peer.destroy();
+        console.log("Server peer destroyed.");
+
+        document.querySelector("#start-btn").disabled = false;
     })
 
-    peer.on("open", (id) => {
-        console.log("server peer is open:", id);
+    peer.on("open", () => {
+        console.log("Peer connection ready to use!");
     });
 
     peer.on("connection", (conn) => {
         console.log("server received a connection:", conn);
     });
 
-    peer.on("call", (call) => {
-        console.log("server received a call:", call);
-
-        call.answer();
-
-        call.on("stream", (stream) => {
-            console.log("stream:", stream);
-            const audio = document.querySelector("#remoteAudio");
-            audio.srcObject = stream;
-            audio.autoplay = true;
-            audio.muted = false;
-        });
-    });
+    peer.on("call", acceptCall);
 
     window.peer = peer;
 }
 
 window.onload = () => {
-    document.querySelector("#form").addEventListener("submit", connect);
+    document.querySelector("#form").addEventListener("submit", setupServerPeer);
 }

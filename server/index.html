@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>web-mic server</title>
-    <script src="../peerjs.min.js"></script>
+    <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
     <script src="./index.js"></script>
 </head>
 <body>
@@ -11,9 +11,9 @@
     <label for="server-name">give this server a name</label>
     <input id="server-name" placeholder="server-name" value="my-gaming-pc" required>
 
-    <label for="server-port">and <button type="submit">start server</button> at port</label>
+    <label for="server-port">and <button type="submit" id="start-btn">start server</button> at port</label>
     <input id="server-port" placeholder="port" value="443" required>
 </form>
-<audio id="remoteAudio" muted="muted"></audio>
+<audio id="remoteAudio"></audio>
 </body>
 </html>
