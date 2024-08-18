@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>web-mic server</title>
-    <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+    <script src="../peerjs.min.js"></script>
     <script src="./index.js"></script>
 </head>
 <body>
@@ -14,6 +14,9 @@
     <label for="server-port">and <button type="submit" id="start-btn">start server</button> at port</label>
     <input id="server-port" placeholder="port" value="443" required>
 </form>
+<p>
+    open <a href="../client/index.html">this page</a> on your other device to be used as microphone.
+</p>
 <audio id="remoteAudio"></audio>
 </body>
 </html>

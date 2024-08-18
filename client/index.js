@@ -8,7 +8,7 @@
 const Client = {};
 
 function getMicrophone() {
-    console.log("Requesting microphone access...");
+    console.log("Requesting client microphone access...");
 
     navigator.mediaDevices
         .getUserMedia({video: false, audio: true})
@@ -17,7 +17,7 @@ function getMicrophone() {
             Client.stream = stream;
         })
         .catch(err => {
-            console.error("Failed to access microphone:", err);
+            console.error("Failed to access client microphone:", err);
         });
 }
 
@@ -57,7 +57,7 @@ function connectToServer(peer, serverName) {
     const conn = peer.connect(serverName);
 
     conn.on("open", () => {
-        console.log("Peer connection ready to use!");
+        console.log("Client peer connection ready to use!");
         callServer(peer, serverName);
     });
 
@@ -71,7 +71,7 @@ function connectToServer(peer, serverName) {
 }
 
 function destroyClientPeer(peer) {
-    console.log("Cleaning up peer...");
+    console.log("Cleaning up client peer...");
     peer.destroy();
     console.log("Client peer destroyed.");
 

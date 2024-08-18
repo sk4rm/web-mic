@@ -46,7 +46,7 @@ function setupServerPeer() {
     peer.on("error", (err) => {
         window.alert(err.message);
 
-        console.log("Cleaning up peer...");
+        console.log("Cleaning up server peer...");
         peer.destroy();
         console.log("Server peer destroyed.");
 
@@ -54,11 +54,11 @@ function setupServerPeer() {
     })
 
     peer.on("open", () => {
-        console.log("Peer connection ready to use!");
+        console.log("Server connection ready to use!");
     });
 
     peer.on("connection", (conn) => {
-        console.log("server received a connection:", conn);
+        console.log("Server received a connection:", conn);
     });
 
     peer.on("call", acceptCall);
