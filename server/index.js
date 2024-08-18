@@ -67,5 +67,8 @@ function setupServerPeer() {
 }
 
 window.onload = () => {
-    document.querySelector("#form").addEventListener("submit", setupServerPeer);
+    document.querySelector("#form").addEventListener("submit", event => {
+        event.preventDefault();
+        setupServerPeer();
+    });
 }

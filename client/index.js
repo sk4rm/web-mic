@@ -103,5 +103,8 @@ function setupClientPeer() {
 }
 
 window.onload = () => {
-    document.querySelector("#form").addEventListener("submit", setupClientPeer);
+    document.querySelector("#form").addEventListener("submit", event => {
+        event.preventDefault();
+        setupClientPeer();
+    });
 }
